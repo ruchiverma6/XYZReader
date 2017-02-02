@@ -66,6 +66,8 @@
     <color name="material_grey_850">#ff303030</color>
     <color name="material_grey_900">#ff212121</color>
     <color name="photo_placeholder">#ccc</color>
+    <color name="primary">#785447</color>
+    <color name="primaryDark">#5B3F36</color>
     <color name="primary_dark_material_dark">@android:color/black</color>
     <color name="primary_dark_material_light">@color/material_grey_600</color>
     <color name="primary_material_dark">@color/material_grey_900</color>
