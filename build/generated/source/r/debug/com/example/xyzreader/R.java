@@ -2751,12 +2751,12 @@ containing a value of this type.
         public static final int always=0x7f0d0036;
         public static final int app_bar=0x7f0d0072;
         public static final int app_bar_layout=0x7f0d0070;
-        public static final int article_body=0x7f0d0085;
+        public static final int article_body=0x7f0d0088;
         public static final int article_byline=0x7f0d0083;
-        public static final int article_byline1=0x7f0d0088;
+        public static final int article_byline1=0x7f0d0086;
         public static final int article_subtitle=0x7f0d008b;
         public static final int article_title=0x7f0d0082;
-        public static final int article_title1=0x7f0d0087;
+        public static final int article_title1=0x7f0d0085;
         public static final int auto=0x7f0d0021;
         public static final int beginning=0x7f0d0034;
         public static final int bottom=0x7f0d0022;
@@ -2809,7 +2809,7 @@ containing a value of this type.
         public static final int list_item=0x7f0d0044;
         public static final int media_actions=0x7f0d008f;
         public static final int meta_bar=0x7f0d0081;
-        public static final int meta_bar1=0x7f0d0086;
+        public static final int meta_bar1=0x7f0d0084;
         public static final int middle=0x7f0d0035;
         public static final int mini=0x7f0d0033;
         public static final int multiply=0x7f0d001b;
@@ -2834,7 +2834,7 @@ containing a value of this type.
         public static final int scrollIndicatorUp=0x7f0d004e;
         public static final int scrollView=0x7f0d004f;
         public static final int scrollable=0x7f0d003c;
-        public static final int scrollview=0x7f0d0084;
+        public static final int scrollview=0x7f0d0087;
         public static final int search_badge=0x7f0d0062;
         public static final int search_bar=0x7f0d0061;
         public static final int search_button=0x7f0d0063;
