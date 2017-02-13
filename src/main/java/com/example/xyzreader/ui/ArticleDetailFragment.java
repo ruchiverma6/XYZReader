@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.ShareCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
@@ -128,13 +129,21 @@ private  TextView titleView;
 
 
         final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout)mRootView.findViewById(R.id.collapsing_toolbar_layout);
+       if(null!=mCursor) {
+           collapsingToolbarLayout.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
+       }
         AppBarLayout appBarLayout = (AppBarLayout)mRootView.findViewById(R.id.app_bar_layout);
 
-
-       final TextView titleView1 = (TextView) mRootView.findViewById(R.id.article_title1);
-        final TextView bylineView1 = (TextView) mRootView.findViewById(R.id.article_byline1);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+       //final TextView titleView1 = (TextView) mRootView.findViewById(R.id.article_title1);
+        //final TextView bylineView1 = (TextView) mRootView.findViewById(R.id.article_byline1);
       final Toolbar toolbar = (Toolbar) mRootView.findViewById(R.id.app_bar);
-        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+
+
+        activity.setSupportActionBar(toolbar);
+        activity.getSupportActionBar().setTitle(" ");
+        activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+       appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             boolean isShow = false;
             int scrollRange = -1;
 
@@ -144,12 +153,14 @@ private  TextView titleView;
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
                 if (scrollRange + verticalOffset == 0) {
-                toolbar.setVisibility(View.VISIBLE);
-                   bindViews(titleView1,bylineView1);
-                    collapsingToolbarLayout.setTitle("Title");
+
+                 //  bindViews(titleView1,bylineView1);
+                    if(null!=mCursor) {
+                        collapsingToolbarLayout.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
+                    }
                     isShow = true;
                 } else if (isShow) {
-                    toolbar.setVisibility(View.INVISIBLE);
+
                     collapsingToolbarLayout.setTitle(" ");//carefull there should a space between double quote otherwise it wont work
                     isShow = false;
                 }

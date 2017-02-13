@@ -55,7 +55,7 @@ public class ArticleListActivity extends ActionBarActivity implements
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
                 if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbarLayout.setTitle("Title");
+                    collapsingToolbarLayout.setTitle(getString(R.string.app_name));
                     isShow = true;
                 } else if (isShow) {
                     collapsingToolbarLayout.setTitle(" ");//carefull there should a space between double quote otherwise it wont work
