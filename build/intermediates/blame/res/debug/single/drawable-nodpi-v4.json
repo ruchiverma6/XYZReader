@@ -1,6 +1,10 @@
 [
     {
-        "merged": "C:\\Users\\v-ruchd\\Downloads\\xyzreader\\XYZReader\\build\\intermediates\\res\\merged\\debug\\drawable-nodpi-v4\\empty_detail.png",
-        "source": "C:\\Users\\v-ruchd\\Downloads\\xyzreader\\XYZReader\\src\\main\\res\\drawable-nodpi\\empty_detail.png"
+        "merged": "/home/ruchi/Downloads/XYZReader-master/C:\\Users\\v-ruchd\\Downloads\\xyzreader\\XYZReader\\build\\intermediates\\res\\merged\\debug\\drawable-nodpi-v4\\empty_detail.png",
+        "source": "/home/ruchi/Downloads/XYZReader-master/C:\\Users\\v-ruchd\\Downloads\\xyzreader\\XYZReader\\src\\main\\res\\drawable-nodpi\\empty_detail.png"
+    },
+    {
+        "merged": "/home/ruchi/Downloads/XYZReader-master/build/intermediates/res/merged/debug/drawable-nodpi-v4/empty_detail.png",
+        "source": "/home/ruchi/Downloads/XYZReader-master/src/main/res/drawable-nodpi/empty_detail.png"
     }
 ]
