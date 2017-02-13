@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/home/ruchi/Downloads/XYZReader-master/src/androidTest/assets"/><source path="/home/ruchi/Downloads/XYZReader-master/build/generated/assets/shaders/androidTest/debug"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="C:\Users\v-ruchd\Downloads\xyzreader\XYZReader\src\androidTest\assets"/><source path="C:\Users\v-ruchd\Downloads\xyzreader\XYZReader\build\generated\assets\shaders\androidTest\debug"/></dataSet></merger>

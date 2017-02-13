@@ -21,6 +21,7 @@ import android.text.format.DateUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -58,6 +59,7 @@ public class ArticleDetailFragment extends Fragment implements
     private int mStatusBarFullOpacityBottom;
 private  TextView titleView;
     private TextView bylineView;
+    private  AppCompatActivity activity;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -134,7 +136,7 @@ private  TextView titleView;
        }
         AppBarLayout appBarLayout = (AppBarLayout)mRootView.findViewById(R.id.app_bar_layout);
 
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
+         activity = (AppCompatActivity) getActivity();
        //final TextView titleView1 = (TextView) mRootView.findViewById(R.id.article_title1);
         //final TextView bylineView1 = (TextView) mRootView.findViewById(R.id.article_byline1);
       final Toolbar toolbar = (Toolbar) mRootView.findViewById(R.id.app_bar);
@@ -143,6 +145,7 @@ private  TextView titleView;
         activity.setSupportActionBar(toolbar);
         activity.getSupportActionBar().setTitle(" ");
         activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        activity.getSupportActionBar().setHomeButtonEnabled(true);
        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             boolean isShow = false;
             int scrollRange = -1;
@@ -308,5 +311,15 @@ private  TextView titleView;
         return mIsCard
                 ? (int) mPhotoContainerView.getTranslationY() + mPhotoView.getHeight() - mScrollY
                 : mPhotoView.getHeight() - mScrollY;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                 activity.onSupportNavigateUp();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

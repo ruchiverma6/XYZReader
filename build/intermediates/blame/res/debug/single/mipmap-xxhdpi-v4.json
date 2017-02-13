@@ -1,10 +1,6 @@
 [
     {
-        "merged": "/home/ruchi/Downloads/XYZReader-master/C:\\Users\\v-ruchd\\Downloads\\xyzreader\\XYZReader\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi-v4\\ic_launcher.png",
-        "source": "/home/ruchi/Downloads/XYZReader-master/C:\\Users\\v-ruchd\\Downloads\\xyzreader\\XYZReader\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
-    },
-    {
-        "merged": "/home/ruchi/Downloads/XYZReader-master/build/intermediates/res/merged/debug/mipmap-xxhdpi-v4/ic_launcher.png",
-        "source": "/home/ruchi/Downloads/XYZReader-master/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+        "merged": "C:\\Users\\v-ruchd\\Downloads\\xyzreader\\XYZReader\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\v-ruchd\\Downloads\\xyzreader\\XYZReader\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     }
 ]

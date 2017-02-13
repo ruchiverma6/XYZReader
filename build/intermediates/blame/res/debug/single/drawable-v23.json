@@ -1,10 +1,6 @@
 [
     {
-        "merged": "/home/ruchi/Downloads/XYZReader-master/C:\\Users\\v-ruchd\\Downloads\\xyzreader\\XYZReader\\build\\intermediates\\res\\merged\\debug\\drawable-v23\\abc_control_background_material.xml",
-        "source": "/home/ruchi/Downloads/XYZReader-master/C:\\Users\\v-ruchd\\Downloads\\xyzreader\\XYZReader\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\drawable-v23\\abc_control_background_material.xml"
-    },
-    {
-        "merged": "/home/ruchi/Downloads/XYZReader-master/build/intermediates/res/merged/debug/drawable-v23/abc_control_background_material.xml",
-        "source": "/home/ruchi/Downloads/XYZReader-master/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/res/drawable-v23/abc_control_background_material.xml"
+        "merged": "C:\\Users\\v-ruchd\\Downloads\\xyzreader\\XYZReader\\build\\intermediates\\res\\merged\\debug\\drawable-v23\\abc_control_background_material.xml",
+        "source": "C:\\Users\\v-ruchd\\Downloads\\xyzreader\\XYZReader\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\drawable-v23\\abc_control_background_material.xml"
     }
 ]
