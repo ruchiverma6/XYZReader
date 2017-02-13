@@ -12,6 +12,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
@@ -21,6 +23,8 @@ import android.text.format.DateUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +52,7 @@ public class ArticleDetailFragment extends Fragment implements
     private View mRootView;
     private int mMutedColor = 0xFF333333;
     //private ObservableScrollView mScrollView;
-  //  private DrawInsetsFrameLayout mDrawInsetsFrameLayout;
+    //  private DrawInsetsFrameLayout mDrawInsetsFrameLayout;
     private ColorDrawable mStatusBarColorDrawable;
 
     private int mTopInset;
@@ -57,9 +61,11 @@ public class ArticleDetailFragment extends Fragment implements
     private int mScrollY;
     private boolean mIsCard = false;
     private int mStatusBarFullOpacityBottom;
-private  TextView titleView;
+    private TextView titleView;
     private TextView bylineView;
-    private  AppCompatActivity activity;
+    private AppCompatActivity activity;
+    Toolbar toolbar;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -106,7 +112,7 @@ private  TextView titleView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_article_detail, container, false);
     /*    mDrawInsetsFrameLayout = (DrawInsetsFrameLayout)
                 mRootView.findViewById(R.id.draw_insets_frame_layout);
@@ -129,24 +135,20 @@ private  TextView titleView;
         });*/
 
 
+        final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) mRootView.findViewById(R.id.collapsing_toolbar_layout);
+        if (null != mCursor) {
+            collapsingToolbarLayout.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
+        }
+        AppBarLayout appBarLayout = (AppBarLayout) mRootView.findViewById(R.id.app_bar_layout);
 
-        final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout)mRootView.findViewById(R.id.collapsing_toolbar_layout);
-       if(null!=mCursor) {
-           collapsingToolbarLayout.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
-       }
-        AppBarLayout appBarLayout = (AppBarLayout)mRootView.findViewById(R.id.app_bar_layout);
-
-         activity = (AppCompatActivity) getActivity();
-       //final TextView titleView1 = (TextView) mRootView.findViewById(R.id.article_title1);
+        activity = (AppCompatActivity) getActivity();
+        //final TextView titleView1 = (TextView) mRootView.findViewById(R.id.article_title1);
         //final TextView bylineView1 = (TextView) mRootView.findViewById(R.id.article_byline1);
-      final Toolbar toolbar = (Toolbar) mRootView.findViewById(R.id.app_bar);
-
-
-        activity.setSupportActionBar(toolbar);
-        activity.getSupportActionBar().setTitle(" ");
-        activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        activity.getSupportActionBar().setHomeButtonEnabled(true);
-       appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+        toolbar = (Toolbar) mRootView.findViewById(R.id.app_bar);
+        final CoordinatorLayout coordinatorLayout = (CoordinatorLayout) mRootView.findViewById(R.id.draw_insets_frame_layout);
+        setHasOptionsMenu(true);
+        setUpActionBar(toolbar);
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             boolean isShow = false;
             int scrollRange = -1;
 
@@ -157,8 +159,8 @@ private  TextView titleView;
                 }
                 if (scrollRange + verticalOffset == 0) {
 
-                 //  bindViews(titleView1,bylineView1);
-                    if(null!=mCursor) {
+                    //  bindViews(titleView1,bylineView1);
+                    if (null != mCursor) {
                         collapsingToolbarLayout.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
                     }
                     isShow = true;
@@ -171,22 +173,34 @@ private  TextView titleView;
         });
 
         mPhotoView = (CustomImageView) mRootView.findViewById(R.id.photo);
-     //   mPhotoContainerView = mRootView.findViewById(R.id.photo_container);
+        //   mPhotoContainerView = mRootView.findViewById(R.id.photo_container);
 
         mStatusBarColorDrawable = new ColorDrawable(0);
 
         mRootView.findViewById(R.id.share_fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
-                        .setType("text/plain")
-                        .setText("Some sample text")
-                        .getIntent(), getString(R.string.action_share)));
+
+                Snackbar snackbar = Snackbar
+                        .make(coordinatorLayout, "Share Content", Snackbar.LENGTH_SHORT);
+
+                snackbar.show();
+                snackbar.setCallback(new Snackbar.Callback() {
+                    @Override
+                    public void onDismissed(Snackbar snackbar, int event) {
+                        startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
+                                .setType("text/plain")
+                                .setText("Some sample text")
+                                .getIntent(), getString(R.string.action_share)));
+                    }
+                });
+
+
             }
         });
-         titleView = (TextView) mRootView.findViewById(R.id.article_title);
-         bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
-        bindViews(titleView,bylineView);
+        titleView = (TextView) mRootView.findViewById(R.id.article_title);
+        bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
+        bindViews(titleView, bylineView);
         updateStatusBar();
         return mRootView;
     }
@@ -203,7 +217,7 @@ private  TextView titleView;
                     (int) (Color.blue(mMutedColor) * 0.9));
         }
         mStatusBarColorDrawable.setColor(color);
-      //  mDrawInsetsFrameLayout.setInsetBackground(mStatusBarColorDrawable);
+        //  mDrawInsetsFrameLayout.setInsetBackground(mStatusBarColorDrawable);
     }
 
     static float progress(float v, float min, float max) {
@@ -220,7 +234,7 @@ private  TextView titleView;
         }
     }
 
-    private void bindViews(TextView titleView,TextView bylineView) {
+    private void bindViews(TextView titleView, TextView bylineView) {
         if (mRootView == null) {
             return;
         }
@@ -234,8 +248,8 @@ private  TextView titleView;
             mRootView.setAlpha(0);
             mRootView.setVisibility(View.VISIBLE);
             mRootView.animate().alpha(1);
-           titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
-           bylineView.setText(Html.fromHtml(
+            titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
+            bylineView.setText(Html.fromHtml(
                     DateUtils.getRelativeTimeSpanString(
                             mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
                             System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
@@ -253,7 +267,7 @@ private  TextView titleView;
                                 Palette p = Palette.generate(bitmap, 12);
                                 mMutedColor = p.getDarkMutedColor(0xFF333333);
                                 mPhotoView.setImageBitmap(imageContainer.getBitmap());
-                               // mRootView.findViewById(R.id.meta_bar)
+                                // mRootView.findViewById(R.id.meta_bar)
                                 //        .setBackgroundColor(mMutedColor);
                                 updateStatusBar();
                             }
@@ -266,8 +280,8 @@ private  TextView titleView;
                     });
         } else {
             mRootView.setVisibility(View.GONE);
-           titleView.setText("N/A");
-            bylineView.setText("N/A" );
+            titleView.setText("N/A");
+            bylineView.setText("N/A");
             bodyView.setText("N/A");
         }
     }
@@ -293,13 +307,13 @@ private  TextView titleView;
             mCursor = null;
         }
 
-        bindViews(titleView,bylineView);
+        bindViews(titleView, bylineView);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
         mCursor = null;
-        bindViews(titleView,bylineView);
+        bindViews(titleView, bylineView);
     }
 
     public int getUpButtonFloor() {
@@ -314,10 +328,43 @@ private  TextView titleView;
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        toolbar.inflateMenu(R.menu.main);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.onSupportNavigateUp();
+            }
+
+
+        });
+        toolbar.setOnMenuItemClickListener(
+                new Toolbar.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        return onOptionsItemSelected(item);
+                    }
+                });
+
+
+    }
+
+    public void setUpActionBar(Toolbar toolbar) {
+        activity.setSupportActionBar(toolbar);
+        activity.getSupportActionBar().setTitle(" ");
+
+
+        activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //  activity.getSupportActionBar().setHomeButtonEnabled(true);
+
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
-                 activity.onSupportNavigateUp();
+                activity.onSupportNavigateUp();
                 return true;
         }
         return super.onOptionsItemSelected(item);

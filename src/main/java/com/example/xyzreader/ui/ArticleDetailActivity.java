@@ -178,4 +178,6 @@ public class ArticleDetailActivity extends ActionBarActivity
     }
 
 
+
+
 }
