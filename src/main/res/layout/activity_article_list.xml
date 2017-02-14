@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 android:layout_gravity="top"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 android:title="dsfsdfsd"
                 app:contentInsetStart="12dp"
                 app:layout_collapseMode="pin" />
