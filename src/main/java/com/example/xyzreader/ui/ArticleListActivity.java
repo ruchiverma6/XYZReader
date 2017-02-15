@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -37,12 +38,17 @@ public class ArticleListActivity extends ActionBarActivity implements
     private Toolbar mToolbar;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
+    private Typeface font;
+    private Typeface fontMedium;
+    private Typeface fontBold;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_list);
-
+        font=  Typeface.createFromAsset(getResources().getAssets(), "Roboto-Regular.ttf");
+        fontMedium=  Typeface.createFromAsset(getResources().getAssets(), "Roboto-Medium.ttf");
+        fontBold=    Typeface.createFromAsset(getResources().getAssets(), "Roboto-Bold.ttf");
         final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_layout);
         AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
@@ -130,10 +136,13 @@ public class ArticleListActivity extends ActionBarActivity implements
     }
 
     private class Adapter extends RecyclerView.Adapter<ViewHolder> {
+        private final Typeface font;
         private Cursor mCursor;
 
         public Adapter(Cursor cursor) {
+
             mCursor = cursor;
+            font=  Typeface.createFromAsset(getResources().getAssets(), "Roboto-Regular.ttf");
         }
 
         @Override
@@ -159,6 +168,8 @@ public class ArticleListActivity extends ActionBarActivity implements
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
             mCursor.moveToPosition(position);
+            holder.titleView.setTypeface(fontMedium);
+            holder.subtitleView.setTypeface(font);
             holder.titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
             holder.subtitleView.setText(
                     DateUtils.getRelativeTimeSpanString(

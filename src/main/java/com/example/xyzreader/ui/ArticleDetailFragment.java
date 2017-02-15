@@ -2,6 +2,7 @@ package com.example.xyzreader.ui;
 
 import android.app.Fragment;
 import android.app.LoaderManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
@@ -11,7 +12,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ShareCompat;
@@ -65,7 +65,9 @@ public class ArticleDetailFragment extends Fragment implements
     private TextView bylineView;
     private AppCompatActivity activity;
     Toolbar toolbar;
-
+    private Typeface font;
+    private Typeface fontMedium;
+    private Typeface fontBold;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -78,13 +80,16 @@ public class ArticleDetailFragment extends Fragment implements
         arguments.putLong(ARG_ITEM_ID, itemId);
         ArticleDetailFragment fragment = new ArticleDetailFragment();
         fragment.setArguments(arguments);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        font=  Typeface.createFromAsset(getResources().getAssets(), "Roboto-Regular.ttf");
+        fontMedium=  Typeface.createFromAsset(getResources().getAssets(), "Roboto-Medium.ttf");
+        fontBold=    Typeface.createFromAsset(getResources().getAssets(), "Roboto-Bold.ttf");
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             mItemId = getArguments().getLong(ARG_ITEM_ID);
         }
@@ -135,10 +140,15 @@ public class ArticleDetailFragment extends Fragment implements
         });*/
 
 
-        final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) mRootView.findViewById(R.id.collapsing_toolbar_layout);
+        /*final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) mRootView.findViewById(R.id.collapsing_toolbar_layout);
+
+       */
+        final TextView toolBarTitle=(TextView)mRootView.findViewById(R.id.text_view_toolbar_title);
+        toolBarTitle.setTypeface(fontBold);
         if (null != mCursor) {
-            collapsingToolbarLayout.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
+            toolBarTitle.setText(mCursor.getString(ArticleLoader.Query.TITLE));
         }
+
         AppBarLayout appBarLayout = (AppBarLayout) mRootView.findViewById(R.id.app_bar_layout);
 
         activity = (AppCompatActivity) getActivity();
@@ -160,13 +170,16 @@ public class ArticleDetailFragment extends Fragment implements
                 if (scrollRange + verticalOffset == 0) {
 
                     //  bindViews(titleView1,bylineView1);
-                    if (null != mCursor) {
+                  /*  if (null != mCursor) {
                         collapsingToolbarLayout.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
-                    }
+                    }*/
+                    if (null != mCursor){
+                        toolBarTitle.setText(mCursor.getString(ArticleLoader.Query.TITLE));
+                }
                     isShow = true;
                 } else if (isShow) {
-
-                    collapsingToolbarLayout.setTitle(" ");//carefull there should a space between double quote otherwise it wont work
+                    toolBarTitle.setText(" ");
+                  //  collapsingToolbarLayout.setTitle(" ");//carefull there should a space between double quote otherwise it wont work
                     isShow = false;
                 }
             }
@@ -200,6 +213,8 @@ public class ArticleDetailFragment extends Fragment implements
         });
         titleView = (TextView) mRootView.findViewById(R.id.article_title);
         bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
+        titleView.setTypeface(fontBold);
+        bylineView.setTypeface(fontMedium);
         bindViews(titleView, bylineView);
         updateStatusBar();
         return mRootView;
@@ -242,7 +257,7 @@ public class ArticleDetailFragment extends Fragment implements
 
         bylineView.setMovementMethod(new LinkMovementMethod());
         TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
-        bodyView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Rosario-Regular.ttf"));
+        bodyView.setTypeface(font);
 
         if (mCursor != null) {
             mRootView.setAlpha(0);
@@ -284,6 +299,13 @@ public class ArticleDetailFragment extends Fragment implements
             bylineView.setText("N/A");
             bodyView.setText("N/A");
         }
+    }
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
     }
 
     @Override

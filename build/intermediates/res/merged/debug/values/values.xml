@@ -254,7 +254,7 @@
     <dimen name="design_tab_text_size">14sp</dimen>
     <dimen name="design_tab_text_size_2line">12sp</dimen>
     <dimen name="detail_body_bottom_margin">88dp</dimen>
-    <dimen name="detail_body_text_size">22sp</dimen>
+    <dimen name="detail_body_text_size">20sp</dimen>
     <dimen name="detail_body_top_margin">16dp</dimen>
     <dimen name="detail_card_max_width">10000dp</dimen>
     <dimen name="detail_card_top_margin">@dimen/detail_photo_height</dimen>
@@ -1644,7 +1644,7 @@
         <item name="windowNoTitle">true</item>
     </style>
     <style name="Theme.Bacon" parent="@style/Theme.AppCompat.Light.NoActionBar">
-<item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimary">@color/primary_color</item>
         <item name="colorPrimaryDark">@color/secondary_color</item>
         <item name="colorAccent">@color/ascent_color</item>
         <item name="android:textColorPrimary">@color/text_primary_color</item>

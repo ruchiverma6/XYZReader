@@ -17,7 +17,7 @@
     <dimen name="design_snackbar_padding_vertical_2lines">@dimen/design_snackbar_padding_vertical</dimen>
     <dimen name="design_tab_scrollable_min_width">160dp</dimen>
     <dimen name="detail_body_bottom_margin">96dp</dimen>
-    <dimen name="detail_body_text_size">20sp</dimen>
+    <dimen name="detail_body_text_size">18sp</dimen>
     <dimen name="detail_card_top_margin">384dp</dimen>
     <dimen name="detail_inner_horiz_margin">64dp</dimen>
     <dimen name="detail_metabar_title_bottom_padding">8dp</dimen>
