@@ -2616,18 +2616,19 @@ containing a value of this type.
         public static final int disabled_alpha_material_light=0x7f07007c;
         public static final int fab_elevation=0x7f07007d;
         public static final int fab_margin=0x7f070020;
-        public static final int fab_press_translation_z=0x7f07007e;
-        public static final int highlight_alpha_material_colored=0x7f07007f;
-        public static final int highlight_alpha_material_dark=0x7f070080;
-        public static final int highlight_alpha_material_light=0x7f070081;
-        public static final int item_touch_helper_max_drag_scroll_per_frame=0x7f070082;
-        public static final int item_touch_helper_swipe_escape_max_velocity=0x7f070083;
-        public static final int item_touch_helper_swipe_escape_velocity=0x7f070084;
+        public static final int fab_margin_right=0x7f07007e;
+        public static final int fab_press_translation_z=0x7f07007f;
+        public static final int highlight_alpha_material_colored=0x7f070080;
+        public static final int highlight_alpha_material_dark=0x7f070081;
+        public static final int highlight_alpha_material_light=0x7f070082;
+        public static final int item_touch_helper_max_drag_scroll_per_frame=0x7f070083;
+        public static final int item_touch_helper_swipe_escape_max_velocity=0x7f070084;
+        public static final int item_touch_helper_swipe_escape_velocity=0x7f070085;
         public static final int list_side_margin=0x7f070023;
         public static final int list_toolbar_side_margin=0x7f070024;
-        public static final int notification_large_icon_height=0x7f070085;
-        public static final int notification_large_icon_width=0x7f070086;
-        public static final int notification_subtext_size=0x7f070087;
+        public static final int notification_large_icon_height=0x7f070086;
+        public static final int notification_large_icon_width=0x7f070087;
+        public static final int notification_subtext_size=0x7f070088;
     }
     public static final class drawable {
         public static final int abc_ab_share_pack_mtrl_alpha=0x7f020000;
